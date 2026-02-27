@@ -84,9 +84,9 @@ experimento/
 └── README.md
 ```
 
-## Guía de Inicio Rápido
+## Despliegue
 
-### Opción 1: Docker Compose (Desarrollo Local)
+### Docker Compose (Desarrollo Local)
 
 #### 1. Construir e iniciar servicios
 
@@ -94,8 +94,6 @@ experimento/
 cd experimento
 docker-compose up -d --build
 ```
-
-
 #### 2. Inicializar datos de prueba
 
 ```bash
@@ -119,7 +117,7 @@ curl http://localhost:5002/api/health
 curl http://localhost:5001/api/rooms
 ```
 
-### Opción 2: Kubernetes 
+### Kubernetes 
 
 #### 1. Construir imágenes Docker
 
