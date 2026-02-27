@@ -1,0 +1,101 @@
+services:
+  redis:
+    image: redis:7-alpine
+    container_name: booking-redis
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - booking-network
+
+  inventory-db:
+    image: postgres:15-alpine
+    container_name: inventory-postgres
+    environment:
+      POSTGRES_DB: inventory_db
+      POSTGRES_USER: inventory_user
+      POSTGRES_PASSWORD: inventory_pass
+    ports:
+      - "5432:5432"
+    volumes:
+      - inventory-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U inventory_user -d inventory_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - booking-network
+
+  booking-db:
+    image: postgres:15-alpine
+    container_name: booking-postgres
+    environment:
+      POSTGRES_DB: booking_db
+      POSTGRES_USER: booking_user
+      POSTGRES_PASSWORD: booking_pass
+    ports:
+      - "5433:5432"
+    volumes:
+      - booking-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U booking_user -d booking_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - booking-network
+
+  inventory-service:
+    build:
+      context: ./inventory
+      dockerfile: Dockerfile
+    container_name: inventory-service
+    environment:
+      DATABASE_URL: postgresql://inventory_user:inventory_pass@inventory-db:5432/inventory_db
+      FLASK_ENV: development
+    ports:
+      - "5001:5001"
+    depends_on:
+      inventory-db:
+        condition: service_healthy
+    networks:
+      - booking-network
+    restart: unless-stopped
+
+  booking-service:
+    build:
+      context: ./booking
+      dockerfile: Dockerfile
+    container_name: booking-service
+    environment:
+      DATABASE_URL: postgresql://booking_user:booking_pass@booking-db:5432/booking_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      REDIS_DB: 0
+      INVENTORY_SERVICE_URL: http://inventory-service:5001/api
+      FLASK_ENV: development
+    ports:
+      - "5002:5002"
+    depends_on:
+      booking-db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      inventory-service:
+        condition: service_started
+    networks:
+      - booking-network
+    restart: unless-stopped
+
+networks:
+  booking-network:
+    driver: bridge
+
+volumes:
+  inventory-data:
+  booking-data:

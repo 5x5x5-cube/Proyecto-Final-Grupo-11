@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: booking-experiment
+  labels:
+    name: booking-experiment
+    environment: experiment
