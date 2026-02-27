@@ -241,5 +241,3 @@ python concurrent_booking_test.py \
 | GET | `/api/bookings/user/{user_id}` | Reservas por usuario |
 | GET | `/api/bookings` | Todas las reservas |
 
-
-- Métricas de Redis: `redis-cli INFO stats`
