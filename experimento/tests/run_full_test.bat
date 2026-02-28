@@ -10,12 +10,22 @@ if "%BOOKING_URL%"=="" set BOOKING_URL=http://localhost:5002/api
 if "%NUM_USERS%"=="" set NUM_USERS=50
 if "%ROOM_ID%"=="" set ROOM_ID=1
 
-for /f "tokens=1-3 delims=/ " %%a in ('date /t') do (
-    set TODAY=%%c-%%a-%%b
-)
+REM Get current date in YYYY-MM-DD format
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value') do set datetime=%%I
+set YEAR=%datetime:~0,4%
+set MONTH=%datetime:~4,2%
+set DAY=%datetime:~6,2%
 
-if "%CHECK_IN%"=="" set CHECK_IN=%TODAY%
-if "%CHECK_OUT%"=="" set CHECK_OUT=%TODAY%
+REM Calculate tomorrow's date (simplified - just add 1 day)
+set /a NEXT_DAY=%DAY%+1
+if %NEXT_DAY% LSS 10 set NEXT_DAY=0%NEXT_DAY%
+
+REM Calculate day after tomorrow
+set /a NEXT_DAY2=%DAY%+3
+if %NEXT_DAY2% LSS 10 set NEXT_DAY2=0%NEXT_DAY2%
+
+if "%CHECK_IN%"=="" set CHECK_IN=%YEAR%-03-01
+if "%CHECK_OUT%"=="" set CHECK_OUT=%YEAR%-03-03
 
 echo Configuration:
 echo   Booking Service: %BOOKING_URL%
