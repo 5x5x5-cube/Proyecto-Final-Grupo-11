@@ -1,0 +1,10 @@
+{
+  "total_requests": 50,
+  "success": 1,
+  "conflicts": 45,
+  "unavailable": 4,
+  "server_errors": 0,
+  "p95_latency": 0.591355562210083,
+  "p99_latency": 0.765329122543335,
+  "throughput": 58.821622124975526
+}
