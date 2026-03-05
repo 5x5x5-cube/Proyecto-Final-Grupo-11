@@ -1,0 +1,18 @@
+# Copy this file to terraform.tfvars and fill in your values
+
+aws_region   = "us-east-1"
+project_name = "booking-experiment"
+environment  = "dev"
+
+# Docker Hub username (required for AWS Academy)
+docker_hub_username = "YOUR_DOCKERHUB_USERNAME"
+
+# Database credentials (CHANGE THESE!)
+db_username = "dbadmin"
+db_password = "ChangeMe123!"
+
+# ECS configuration
+desired_count = 2  # Set to 1 to save costs
+
+# NAT Gateway (set to false to save ~$35/month, but containers won't have internet access)
+enable_nat_gateway = true
