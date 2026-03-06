@@ -43,6 +43,8 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 ---
 
 ## Resultados de las Pruebas
+<img width="1918" height="508" alt="image" src="https://github.com/user-attachments/assets/06c6a1d2-8b0d-4112-b0e8-8987d356a20b" />
+<img width="1918" height="935" alt="JMETER3" src="https://github.com/user-attachments/assets/303322bc-5fd1-426f-8ac3-5a4dbd602963" />
 
 ### Métricas Generales (JMeter)
 
@@ -106,6 +108,7 @@ Errores del Servidor:  0  (0%)
 ---
 
 ## Análisis de Resultados
+<img width="1918" height="996" alt="JMETER4" src="https://github.com/user-attachments/assets/be1e8325-bae0-4b39-b66c-e017dccf7890" />
 
 1. **Gestión Correcta de Conflictos**
    - El sistema detectó y manejó correctamente 45 conflictos de concurrencia (HTTP 409)
@@ -128,7 +131,8 @@ Errores del Servidor:  0  (0%)
 ## 🎓 Conclusiones
 
 ### Validación del Sistema
-
+<img width="1918" height="508" alt="image" src="https://github.com/user-attachments/assets/687a5547-df9e-4e72-8c1d-b4d77c1c6b86" />
+En la imagen se observa que la reserva se realizo una sola vez.
 El experimento **validó exitosamente** los siguientes aspectos:
 
  **Control de Concurrencia**: El sistema implementa correctamente mecanismos de bloqueo pesimista/optimista para prevenir reservas duplicadas
