@@ -142,7 +142,7 @@ El experimento **validó exitosamente** los siguientes aspectos:
 
  **Resiliencia**: No se registraron errores críticos del servidor, demostrando estabilidad del código
 
- **Rendimiento**: Latencias en percentiles altos (P95, P99) dentro de rangos aceptables para aplicaciones web
+ **Rendimiento**: Latencias en percentiles altos dentro de rangos aceptables para aplicaciones web
 
 
 
@@ -189,5 +189,4 @@ Thread Group: Concurrent Booking Users
 
 El sistema demostró un comportamiento **robusto y correcto** bajo condiciones de alta concurrencia. Los mecanismos de control de concurrencia funcionan según lo diseñado, previniendo efectivamente las reservas duplicadas. La infraestructura AWS ECS proporcionó recursos suficientes sin saturación.
 
-Las áreas de mejora identificadas son **optimizaciones** más que correcciones críticas, lo que indica que el sistema está listo para producción con monitoreo adecuado.
 
