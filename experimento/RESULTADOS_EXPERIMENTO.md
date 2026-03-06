@@ -61,10 +61,10 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 ### Distribución de Respuestas
 
 ```
-✅ Reservas Exitosas:     1  (2%)
-⚠️  Conflictos (409):     45 (90%)
-❌ No Disponible (503):   4  (8%)
-🔴 Errores del Servidor:  0  (0%)
+Reservas Exitosas:     1  (2%)
+Conflictos (409):     45 (90%)
+No Disponible (503):   4  (8%)
+Errores del Servidor:  0  (0%)
 ```
 
 ### Latencias (Python Test)
@@ -107,8 +107,6 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 
 ## 🔍 Análisis de Resultados
 
-### ✅ Aspectos Positivos
-
 1. **Gestión Correcta de Conflictos**
    - El sistema detectó y manejó correctamente 45 conflictos de concurrencia (HTTP 409)
    - Solo 1 reserva fue exitosa, demostrando que el mecanismo de bloqueo funciona
@@ -126,30 +124,6 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
    - P95: 591ms - Dentro de rangos aceptables para operaciones transaccionales
    - P99: 765ms - Buen rendimiento incluso en el percentil 99
 
-### ⚠️ Áreas de Mejora
-
-1. **Alta Tasa de Conflictos**
-   - 90% de conflictos indica que el sistema está funcionando correctamente, pero podría optimizarse la experiencia de usuario con:
-     - Retry automático con backoff exponencial
-     - Sistema de cola para solicitudes concurrentes
-     - Notificaciones en tiempo real de disponibilidad
-
-2. **Errores de Disponibilidad (503)**
-   - 4 solicitudes recibieron error 503 (Service Unavailable)
-   - Posibles causas:
-     - Límites de conexión a la base de datos
-     - Timeout en conexiones bajo alta carga
-     - Necesidad de ajustar health checks o configuración de ECS
-
-3. **Variabilidad en Tiempos de Respuesta**
-   - Rango amplio: 277ms - 7536ms
-   - Desviación estándar alta (1114ms)
-   - Sugiere necesidad de optimización en:
-     - Consultas a base de datos
-     - Gestión de conexiones
-     - Configuración de timeouts
-
----
 
 ## 🎓 Conclusiones
 
@@ -177,47 +151,6 @@ El experimento **validó exitosamente** los siguientes aspectos:
 
 ---
 
-## 💡 Recomendaciones
-
-### Corto Plazo
-
-1. **Investigar errores 503**
-   - Revisar logs de CloudWatch
-   - Ajustar configuración de health checks
-   - Aumentar timeout de conexiones si es necesario
-
-2. **Optimizar consultas de base de datos**
-   - Analizar queries lentas
-   - Implementar índices adicionales si es necesario
-   - Considerar connection pooling optimizado
-
-### Mediano Plazo
-
-1. **Implementar sistema de reintentos**
-   - Retry automático con backoff exponencial en el cliente
-   - Mejorar mensajes de error para usuarios finales
-
-2. **Monitoreo mejorado**
-   - Configurar alarmas de CloudWatch para latencias altas
-   - Dashboard de métricas en tiempo real
-   - Alertas para tasa de errores > 5%
-
-3. **Pruebas adicionales**
-   - Pruebas de carga sostenida (30+ minutos)
-   - Pruebas con diferentes patrones de carga
-   - Pruebas de recuperación ante fallos
-
-### Largo Plazo
-
-1. **Sistema de colas**
-   - Implementar Amazon SQS para gestionar picos de demanda
-   - Procesamiento asíncrono de reservas
-
-2. **Caché distribuido**
-   - Optimizar uso de Redis para reducir carga en base de datos
-   - Implementar caché de disponibilidad de habitaciones
-
----
 
 ## 📝 Datos Técnicos del Experimento
 
@@ -234,7 +167,7 @@ Thread Group: Concurrent Booking Users
     └── Content-Type: application/json
 ```
 
-### Respuesta de Ejemplo (Exitosa)
+### Respuesta de Ejemplo 
 
 ```json
 {
@@ -253,16 +186,6 @@ Thread Group: Concurrent Booking Users
 
 - **HTTP 409 (Conflict)**: Habitación ya reservada para las fechas solicitadas
 - **HTTP 503 (Service Unavailable)**: Servicio temporalmente no disponible
-
----
-
-## 📅 Información del Experimento
-
-- **Fecha de Ejecución**: 5 de marzo de 2026
-- **Hora**: ~23:00 - 01:30 UTC
-- **Duración**: Aproximadamente 3 segundos de carga activa
-- **Entorno**: AWS ECS - Región us-east-1
-- **Versión del Sistema**: booking-experiment-dev
 
 ---
 
