@@ -43,7 +43,8 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 ---
 
 ## Resultados de las Pruebas
-<img width="1918" height="508" alt="image" src="https://github.com/user-attachments/assets/06c6a1d2-8b0d-4112-b0e8-8987d356a20b" />
+<img width="1918" height="1003" alt="JMETER2" src="https://github.com/user-attachments/assets/2484b207-0e15-438f-b49b-206a72f5515d" />
+
 <img width="1918" height="935" alt="JMETER3" src="https://github.com/user-attachments/assets/303322bc-5fd1-426f-8ac3-5a4dbd602963" />
 
 ### Métricas Generales (JMeter)
