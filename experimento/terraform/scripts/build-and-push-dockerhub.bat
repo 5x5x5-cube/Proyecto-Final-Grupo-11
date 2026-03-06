@@ -70,10 +70,14 @@ echo Images:
 echo - %DOCKER_USERNAME%/inventory-service:latest
 echo - %DOCKER_USERNAME%/booking-service:latest
 echo.
+REM Return to terraform directory
+cd ..\terraform
+
 echo Next steps:
 echo 1. Update terraform.tfvars with:
 echo    docker_hub_username = "%DOCKER_USERNAME%"
 echo.
-echo 2. Deploy infrastructure:
-echo    cd ..\terraform
+echo 2. Wait 1-2 hours for Docker Hub rate limit to reset
+echo.
+echo 3. Deploy infrastructure:
 echo    terraform apply

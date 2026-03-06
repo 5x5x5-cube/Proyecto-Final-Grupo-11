@@ -1,4 +1,5 @@
 data "aws_region" "current" {}
+data "aws_caller_identity" "current" {}
 
 # ECS Cluster
 resource "aws_ecs_cluster" "main" {
@@ -51,6 +52,10 @@ resource "aws_ecs_task_definition" "inventory" {
   container_definitions = jsonencode([{
     name  = "inventory"
     image = "${var.inventory_repository_url}:latest"
+    
+    repositoryCredentials = {
+      credentialsParameter = "arn:aws:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:dockerhub-credentials"
+    }
     
     portMappings = [{
       containerPort = 5001
@@ -105,6 +110,10 @@ resource "aws_ecs_task_definition" "booking" {
     name  = "booking"
     image = "${var.booking_repository_url}:latest"
     
+    repositoryCredentials = {
+      credentialsParameter = "arn:aws:secretsmanager:${data.aws_region.current.name}:${data.aws_caller_identity.current.account_id}:secret:dockerhub-credentials"
+    }
+    
     portMappings = [{
       containerPort = 5002
       protocol      = "tcp"
@@ -113,7 +122,7 @@ resource "aws_ecs_task_definition" "booking" {
     environment = [
       {
         name  = "DATABASE_URL"
-        value = "postgresql://${var.db_username}:${var.db_password}@${split(":", var.rds_endpoint)[0]}:5432/${var.booking_db_name}"
+        value = "postgresql://${var.db_username}:${var.db_password}@${split(":", var.rds_endpoint)[0]}:5432/${var.inventory_db_name}"
       },
       {
         name  = "REDIS_HOST"
