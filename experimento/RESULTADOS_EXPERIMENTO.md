@@ -1,12 +1,12 @@
 # Resultados del Experimento de Concurrencia
 
-## 📊 Resumen Ejecutivo
+## Resumen
 
 Este documento presenta los resultados del experimento de pruebas de concurrencia realizado sobre el sistema de reservas desplegado en AWS ECS (Elastic Container Service). El objetivo fue validar el comportamiento del sistema bajo condiciones de alta concurrencia y evaluar el rendimiento de la infraestructura cloud.
 
 ---
 
-## 🎯 Objetivo del Experimento
+## Objetivo del Experimento
 
 Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrentes de reserva de habitaciones, verificando:
 - Correcta gestión de conflictos de concurrencia
@@ -16,7 +16,7 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 
 ---
 
-## 🔧 Configuración del Experimento
+## Configuración del Experimento
 
 ### Herramienta de Pruebas
 **Apache JMeter** - Herramienta de pruebas de carga y rendimiento
@@ -42,7 +42,7 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 
 ---
 
-## 📈 Resultados de las Pruebas
+## Resultados de las Pruebas
 
 ### Métricas Generales (JMeter)
 
@@ -77,7 +77,7 @@ Errores del Servidor:  0  (0%)
 
 ---
 
-## 📊 Métricas de Infraestructura AWS
+## Métricas de Infraestructura AWS
 
 ### Utilización de CPU
 
@@ -105,7 +105,7 @@ Errores del Servidor:  0  (0%)
 
 ---
 
-## 🔍 Análisis de Resultados
+## Análisis de Resultados
 
 1. **Gestión Correcta de Conflictos**
    - El sistema detectó y manejó correctamente 45 conflictos de concurrencia (HTTP 409)
@@ -131,28 +131,17 @@ Errores del Servidor:  0  (0%)
 
 El experimento **validó exitosamente** los siguientes aspectos:
 
-✅ **Control de Concurrencia**: El sistema implementa correctamente mecanismos de bloqueo pesimista/optimista para prevenir reservas duplicadas
+ **Control de Concurrencia**: El sistema implementa correctamente mecanismos de bloqueo pesimista/optimista para prevenir reservas duplicadas
 
-✅ **Escalabilidad de Infraestructura**: AWS ECS manejó la carga sin saturación de recursos (CPU < 30%, Memoria < 60%)
+ **Escalabilidad de Infraestructura**: AWS ECS manejó la carga sin saturación de recursos (CPU < 30%, Memoria < 60%)
 
-✅ **Resiliencia**: No se registraron errores críticos del servidor, demostrando estabilidad del código
+ **Resiliencia**: No se registraron errores críticos del servidor, demostrando estabilidad del código
 
-✅ **Rendimiento**: Latencias en percentiles altos (P95, P99) dentro de rangos aceptables para aplicaciones web
-
-### Comportamiento Esperado vs. Real
-
-| Aspecto | Esperado | Real | Estado |
-|---------|----------|------|--------|
-| Solo 1 reserva exitosa | ✅ Sí | ✅ Sí | ✅ PASS |
-| Conflictos detectados | ✅ Sí | ✅ 45/50 | ✅ PASS |
-| Sin errores 500 | ✅ Sí | ✅ 0 errores | ✅ PASS |
-| Latencia < 1s (P95) | ✅ Sí | ✅ 591ms | ✅ PASS |
-| CPU < 70% | ✅ Sí | ✅ ~30% | ✅ PASS |
-
----
+ **Rendimiento**: Latencias en percentiles altos (P95, P99) dentro de rangos aceptables para aplicaciones web
 
 
-## 📝 Datos Técnicos del Experimento
+
+## Datos Técnicos del Experimento
 
 ### Configuración JMeter
 
@@ -189,9 +178,9 @@ Thread Group: Concurrent Booking Users
 
 ---
 
-## 🏆 Resultado final
+## Resultado final
 
-**✅ EXPERIMENTO EXITOSO**
+**EXPERIMENTO EXITOSO**
 
 El sistema demostró un comportamiento **robusto y correcto** bajo condiciones de alta concurrencia. Los mecanismos de control de concurrencia funcionan según lo diseñado, previniendo efectivamente las reservas duplicadas. La infraestructura AWS ECS proporcionó recursos suficientes sin saturación.
 
