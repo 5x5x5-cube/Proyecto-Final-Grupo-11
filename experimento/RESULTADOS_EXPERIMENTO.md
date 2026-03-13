@@ -43,6 +43,9 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 ---
 
 ## Resultados de las Pruebas
+<img width="1918" height="1003" alt="JMETER2" src="https://github.com/user-attachments/assets/2484b207-0e15-438f-b49b-206a72f5515d" />
+
+<img width="1918" height="935" alt="JMETER3" src="https://github.com/user-attachments/assets/303322bc-5fd1-426f-8ac3-5a4dbd602963" />
 
 ### Métricas Generales (JMeter)
 
@@ -106,6 +109,7 @@ Errores del Servidor:  0  (0%)
 ---
 
 ## Análisis de Resultados
+<img width="1918" height="996" alt="JMETER4" src="https://github.com/user-attachments/assets/be1e8325-bae0-4b39-b66c-e017dccf7890" />
 
 1. **Gestión Correcta de Conflictos**
    - El sistema detectó y manejó correctamente 45 conflictos de concurrencia (HTTP 409)
@@ -128,7 +132,8 @@ Errores del Servidor:  0  (0%)
 ## 🎓 Conclusiones
 
 ### Validación del Sistema
-
+<img width="1918" height="508" alt="image" src="https://github.com/user-attachments/assets/687a5547-df9e-4e72-8c1d-b4d77c1c6b86" />
+En la imagen se observa que la reserva se realizo una sola vez.
 El experimento **validó exitosamente** los siguientes aspectos:
 
  **Control de Concurrencia**: El sistema implementa correctamente mecanismos de bloqueo pesimista/optimista para prevenir reservas duplicadas
@@ -137,7 +142,7 @@ El experimento **validó exitosamente** los siguientes aspectos:
 
  **Resiliencia**: No se registraron errores críticos del servidor, demostrando estabilidad del código
 
- **Rendimiento**: Latencias en percentiles altos (P95, P99) dentro de rangos aceptables para aplicaciones web
+ **Rendimiento**: Latencias en percentiles altos dentro de rangos aceptables para aplicaciones web
 
 
 
@@ -184,5 +189,4 @@ Thread Group: Concurrent Booking Users
 
 El sistema demostró un comportamiento **robusto y correcto** bajo condiciones de alta concurrencia. Los mecanismos de control de concurrencia funcionan según lo diseñado, previniendo efectivamente las reservas duplicadas. La infraestructura AWS ECS proporcionó recursos suficientes sin saturación.
 
-Las áreas de mejora identificadas son **optimizaciones** más que correcciones críticas, lo que indica que el sistema está listo para producción con monitoreo adecuado.
 
