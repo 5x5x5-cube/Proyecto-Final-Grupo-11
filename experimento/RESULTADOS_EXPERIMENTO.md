@@ -65,8 +65,7 @@ Evaluar la capacidad del sistema para manejar múltiples solicitudes concurrente
 
 ```
 Reservas Exitosas:     1  (2%)
-Conflictos (409):     45 (90%)
-No Disponible (503):   4  (8%)
+Conflictos (409):     49 (98%)
 Errores del Servidor:  0  (0%)
 ```
 
@@ -179,7 +178,7 @@ Thread Group: Concurrent Booking Users
 ### Detalles de Errores
 
 - **HTTP 409 (Conflict)**: Habitación ya reservada para las fechas solicitadas
-- **HTTP 503 (Service Unavailable)**: Servicio temporalmente no disponible
+
 
 ---
 
