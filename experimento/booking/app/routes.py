@@ -148,9 +148,9 @@ def confirm_booking():
 
             return jsonify({
                 'success': False,
-                'error': 'Could not acquire lock for booking. Please try again.',
+                'error': 'No availability for the selected dates',
                 'response_time': f"{elapsed_time:.3f}s"
-            }), 503
+            }), 409
 
     except ValueError as ve:
         return jsonify({
